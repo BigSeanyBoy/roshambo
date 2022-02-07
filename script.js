@@ -1,25 +1,17 @@
-const dict = {
-    "rock": 1,
-    "paper": 2,
-    "scissors": 3,
-    1: "rock",
-    2: "paper",
-    3: "scissors"
-};
-
 function computerPlay () {
-    return Math.floor(Math.random() * 3) + 1;
+    let options = ["rock", "paper", "scissors"];
+    return options[Math.floor(Math.random() * 3)];
 }
 
 function playRound (playerSelection, computerSelection) {
-    playerSelection = dict[playerSelection.toLowerCase()];
+    playerSelection = playerSelection.toLowerCase();
     if (playerSelection === computerSelection) {
         return 0;
     }
     else if (
-        (playerSelection === 1 && computerSelection === 3)
-        || (playerSelection === 2 && computerSelection === 1)
-        || (playerSelection === 3 && computerSelection === 2) 
+        (playerSelection === "rock" && computerSelection === "scissors")
+        || (playerSelection === "scissors" && computerSelection === "paper")
+        || (playerSelection === "paper" && computerSelection === "rock") 
     ) {
         return 1;
     }
@@ -32,17 +24,17 @@ function game() {
     gameWinner = 0;
     for (let i = 0; i < 5; i++) {
         console.log("Round " + (i + 1) + ":");
-        const playerSelection = prompt("Rock, Paper, or Scissors? >>> ");
+        const playerSelection = prompt("Rock, Paper, or Scissors?");
         const computerSelection = computerPlay();
         roundWinner = playRound(playerSelection, computerSelection);
         if (roundWinner === 1) {
-            console.log("You win! " + playerSelection.toLowerCase() + " beats " + dict[computerSelection] + ".");
+            console.log("You win! " + playerSelection.toLowerCase() + " beats " + computerSelection + ".");
         }
         else if (roundWinner === -1) {
-            console.log("You lose... " + dict[computerSelection] + " beats " + playerSelection.toLowerCase() + ".");
+            console.log("You lose... " + computerSelection + " beats " + playerSelection.toLowerCase() + ".");
         }
         else {
-            console.log("Tie, you both chose " + dict[computerSelection]);
+            console.log("Tie, you both chose " + computerSelection);
         }
         gameWinner += roundWinner;
     }
