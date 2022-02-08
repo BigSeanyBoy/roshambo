@@ -1,1 +1,1 @@
-# roshambo
+# Rock, Paper, Scissors Project
