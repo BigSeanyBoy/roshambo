@@ -28,7 +28,16 @@ function playRound (playerSelection, computerSelection) {
     }
 
     const score = document.querySelector(".score");
-    score.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+    while(score.firstChild) score.removeChild(score.firstChild);
+
+    const playerText = document.createElement('span');
+    playerText.textContent = `Player: ${playerScore}`;
+
+    const computerText = document.createElement('span');
+    computerText.textContent = `Computer: ${computerScore}`;
+
+    score.appendChild(playerText);
+    score.appendChild(computerText);
 
 }
 
